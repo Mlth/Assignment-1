@@ -19,14 +19,8 @@ public class RegExprTests
             "\r\n    inner text" +
             "\r\n</tag>";
 
-        var expected = new List<(Uri, string)> 
-        { 
-            (new("http://link.com"), "hej"),
-            (new("http://link.com"), "hej"),
-            (new("http://link.com"), "hej"),
-            (new("http://link.com"), "hej"),
-            (new("http://link.com"), "hej")
-        };
+        var tuple = (new Uri("http://link.com"), "hej");
+        var expected = new List<(Uri, string)> { tuple, tuple, tuple, tuple, tuple };
         var actual = RegExpr.Urls(html);
 
         Assert.Equal(expected, actual);

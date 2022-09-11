@@ -14,7 +14,7 @@ public static class Iterators
         foreach(var item in items){
             if(predicate(item)){
                 yield return item;
-            } 
+            }
         }
     }
 }
