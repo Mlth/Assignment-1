@@ -30,5 +30,20 @@ public static class RegExpr
         }
     }
 
-    public static IEnumerable<(Uri url, string title)> Urls(string html) => throw new NotImplementedException();
+    public static IEnumerable<(Uri url, string title)> Urls(string html) 
+    {
+        var reg = new Regex("<(?<tag>\\w+).*?((?<url>https?:\\/\\/\\S+(?=\\\")).*?|(title=\"(?<title>\\S+)\").*?){1,2}>([\\w \\n]+<\\/\\w+>)?");
+        var matches = reg.Matches(html);
+        foreach (Match match in matches.Cast<Match>())
+        {
+            var url = match.Groups["url"].Value;
+            var titleOrInner = match.Groups["title"].Value;
+            if (titleOrInner == "" || titleOrInner == null)
+            {
+                var tag = match.Groups["tag"].Value;
+                titleOrInner = InnerText(match.Value, tag).ToList()[0];
+            }
+            yield return new(new(url), titleOrInner);
+        }
+    }
 }

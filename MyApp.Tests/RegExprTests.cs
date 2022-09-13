@@ -19,4 +19,21 @@ public class RegExprTests
         var html = "<html><body><div>Text to be returned</div><button>This text should not be returned</button></body></html>";
         Assert.Equal(new List<string>{"Text to be returned"}, RegExpr.InnerText(html, "div"));
     }
+
+    public void Urls_given_html_with_all_matches_having_title_returns_list_of_tuples()
+    {
+        var html = "<tag text href=\"http://link.com\" text title=\"hej\" text>" +
+            "\r\n<tag text href=\"http://link.com\" text title=\"hej\" text> inner text </tag>" +
+            "\r\n<tag text title=\"hej\" text href=\"http://link.com\" text>" +
+            "\r\n<tag text title=\"hej\" text href=\"http://link.com\" text> inner text </tag>" +
+            "\r\n<tag text href=\"http://link.com\" text title=\"hej\" text> " +
+            "\r\n    inner text" +
+            "\r\n</tag>";
+
+        var tuple = (new Uri("http://link.com"), "hej");
+        var expected = new List<(Uri, string)> { tuple, tuple, tuple, tuple, tuple };
+        var actual = RegExpr.Urls(html);
+
+        Assert.Equal(expected, actual);
+    }
 }
