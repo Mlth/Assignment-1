@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9UgIs+U575yQpAtAmxDXeSb6Jk5WTU+EynYTQ+c4RbE8/dqsf+MM5keHyBZzwanb5FQjs41JmXdy//VmNmrXDw==",
+  "dgSpecHash": "dKqmw2e0emZzlyBylegxD0l98CG7E91CjdcGNx8zwqk/zG9GitpD6D4WslN9lTPZx2O//VN5sYiX8EBSUTuXsQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\super\\Documents\\Semestre\\3rd\\Analysis, design and software architecture\\Assignment 1\\Assignment-1\\MyApp.Tests\\MyApp.Tests.csproj",
+  "projectFilePath": "c:\\Users\\super\\Documents\\Semestre\\3rd\\Analysis, design and software architecture\\Assignment 1\\Assignment-1\\MyApp.Tests\\MyApp.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\super\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\super\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",
