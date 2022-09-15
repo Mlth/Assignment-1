@@ -5,7 +5,7 @@ namespace MyApp;
 public static class RegExpr
 {
     public static IEnumerable<string> SplitLine(IEnumerable<string> lines){
-        Regex reg = new Regex(@"\w+");
+        Regex reg = new Regex(@"[a-zA-Z0-9]+");
         foreach(var line in lines){
             var matches = reg.Matches(line).Cast<Match>().Select(m => m.Value).ToArray();
             foreach(var match in matches){
@@ -15,10 +15,10 @@ public static class RegExpr
     }
 
     public static IEnumerable<(int width, int height)> Resolution(string resolutions){
-        Regex reg = new Regex(@"[0-9]{3,4}");
-        var matches = reg.Matches(resolutions).Cast<Match>().Select(m => m.Value).ToArray();
-        for(int i = 0; i < matches.Length; i += 2){
-            yield return (int.Parse(matches[i]), int.Parse(matches[i+1]));
+        Regex reg = new Regex(@"((?<first>[0-9]{3,4})x(?<second>[0-9]{3,4}))");
+        var matches = reg.Matches(resolutions);
+        foreach(Match match in matches){
+            yield return (int.Parse(Convert.ToString(match.Groups["first"])), int.Parse(Convert.ToString(match.Groups["second"])));
         }
     }
 
@@ -26,7 +26,7 @@ public static class RegExpr
         Regex reg = new Regex(@$"<({tag})>(.*?)<\/\1>");
         var matches = reg.Matches(html);
         foreach(Match match in matches){
-            yield return match.Groups[2].Value;
+            yield return Regex.Replace(Convert.ToString(match.Groups[2]), @"</?.*?>", String.Empty);
         }
     }
 

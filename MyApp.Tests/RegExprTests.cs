@@ -21,6 +21,12 @@ public class RegExprTests
     }
 
     [Fact]
+    public void InnerTextGivenStringWithFourDifferentAndOneNestedTagReturnsInnerTextFromDivTagAndRemovesInnerTags(){
+        var html = "<html><body><div>Text to be <u>hey</u> returned</div><button>This text should not be returned</button></body></html>";
+        Assert.Equal(new List<string>{"Text to be hey returned"}, RegExpr.InnerText(html, "div"));
+    }
+
+    [Fact]
     public void Urls_given_html_with_all_matches_having_title_returns_list_of_tuples()
     {
         var html = "<tag text href=\"http://link.com\" text title=\"hej\" text>" +
